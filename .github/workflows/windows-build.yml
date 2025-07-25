@@ -18,7 +18,9 @@ jobs:
         echo "$PWD/depot_tools" >> $GITHUB_PATH
 
     - name: Init Brave
+      working-directory: .
       run: |
+
         npm install
         npm run init
 
