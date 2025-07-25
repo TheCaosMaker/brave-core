@@ -1,0 +1,123 @@
+From: Brave Lite Complete Patch <you@example.com>
+Date: Fri, 25 Jul 2025 18:00:00 -0300
+Subject: [PATCH][Lite‑Complete‑Win] Remove bloat completo Brave (AI, News, Wallet, Tor, Metrics etc.)
+
+diff --git a/args.gn b/args.gn
+new file mode 100644
+index 0000000..abcd123
+--- /dev/null
++++ b/args.gn
+@@ -0,0 +1,25 @@
++is_debug = false
++is_official_build = true
++symbol_level = 0
++target_os = "win"
++target_cpu = "x64"
++brave_channel = "stable"
++
++enable_brave_news = false
++enable_brave_rewards = false
++enable_brave_wallet = false
++enable_brave_vpn = false
++enable_brave_talk = false
++enable_brave_ai_chat = false
++enable_brave_tor = false
++enable_brave_ads = false
++enable_brave_referrals = false
++enable_brave_media_router = false
++enable_brave_webtorrent = false
++
++# Remover telemetria, metrics e reporting
++enable_brave_metrics = false
++enable_brave_telemetry = false
++enable_brave_reporting = false
++
++# Desative auto-update manualmente ao iniciar; ajustar no código fonte conforme necessário
++# restore_default_user_agent = true
++# restore_default_ch_ua = true
+
+diff --git a/brave/chrome/browser/brave_browser_main_extra_parts.cc b/brave/chrome/browser/brave_browser_main_extra_parts.cc
+index abc123..def456 100644
+--- a/brave/chrome/browser/brave_browser_main_extra_parts.cc
++++ b/brave/chrome/browser/brave_browser_main_extra_parts.cc
+@@ -130,80 +130,6 @@ void BraveBrowserMainExtraParts::PostBrowserStart() {
+   BravePasswordManagerInit();
+-
+-  // Brave component inits removed by patch:
+-  BraveNewsServiceFactory::GetForProfile(browser()->profile());
+-  BraveRewardsServiceFactory::GetForProfile(browser()->profile());
+-  wallet::BraveWalletServiceFactory::GetForProfile(browser()->profile());
+-  vpn::BraveVpnServiceFactory::GetForProfile(browser()->profile());
+-  ai::BraveAIChatServiceFactory::GetForProfile(browser()->profile());
+-  ai::BraveAIWriteServiceFactory::GetForProfile(browser()->profile());
+-  talk::BraveTalkServiceFactory::GetForProfile(browser()->profile());
+-  tor::TorProfileServiceFactory::GetForProfile(browser()->profile());
+-  ads::BraveAdsServiceFactory::GetForProfile(browser()->profile());
+-  referrals::BraveReferralServiceFactory::GetForProfile(browser()->profile());
+-  adaptivecaptcha::AdaptiveCaptchaServiceFactory::GetForProfile(browser()->profile());
+-  media_router::MediaRouterFactory::GetForProfile(browser()->profile());
+-  torrent::WebTorrentServiceFactory::GetForProfile(browser()->profile());
+-
+-  // Telemetria / metrics / reporting
+-  metrics::MetricsService::GetForBrowserContext(browser()->profile());
+-  reporting::ReportingService::GetForContext(browser()->profile());
+-  telemetry::TelemetryService::GetForContext(browser()->profile());
+ }
+
+diff --git a/brave/constants/brave_pref_names.cc b/brave/constants/brave_pref_names.cc
+index 123abc..456def 100644
+--- a/brave/constants/brave_pref_names.cc
++++ b/brave/constants/brave_pref_names.cc
+@@ -10,95 +10,6 @@ const char kBraveNewsLastFetchTime[] = "brave.news.last_fetch_time";
+ const char kBraveNewsArticles[] = "brave.news.articles";
+-
+-// Brave Rewards prefs
+-const char kBraveRewardsLedgerBalance[] = "brave.rewards.ledger_balance";
+-const char kBraveRewardsNotification[] = "brave.rewards.notification";
+-const char kBraveRewardsOptIn[] = "brave.rewards.opt_in";
+-const char kBraveRewardsWalletInfo[] = "brave.rewards.wallet_info";
+-
+-// Wallet
+-const char kBraveWalletSettings[] = "brave.wallet.settings";
+-const char kBraveWalletAddresses[] = "brave.wallet.addresses";
+-
+-// VPN
+-const char kBraveVpnEnabled[] = "brave.vpn.enabled";
+-const char kBraveVpnCost[] = "brave.vpn.cost";
+-const char kBraveVpnRegion[] = "brave.vpn.region";
+-
+-// AI Chat / Write
+-const char kBraveAIChatEnabled[] = "brave.ai_chat.enabled";
+-const char kBraveAIWriteEnabled[] = "brave.ai_write.enabled";
+-
+-// Talk
+-const char kBraveTalkEnabled[] = "brave.talk.enabled";
+-
+-// Tor
+-const char kBraveTorEnabled[] = "brave.tor.enabled";
+-
+-// Ads
+-const char kBraveAdsEnabled[] = "brave.ads.enabled";
+-
+-// Referrals
+-const char kBraveReferralsCount[] = "brave.referrals.count";
+-
+-// Adaptive captcha
+-const char kBraveAdaptiveCaptchaToken[] = "brave.adaptivecaptcha.token";
+-
+-// Media router
+-const char kBraveMediaRouterEnabled[] = "brave.media_router.enabled";
+-
+-// Webtorrent
+-const char kBraveWebTorrentEnabled[] = "brave.webtorrent.enabled";
+-
+-// navigator.brave API
+-const char kBraveIsBraveApi[] = "navigator.brave";
+-const char kBraveIsBraveName[] = "navigator.brave.isBrave.name";
+-
+-// Telemetria / Metrics / Reporting prefs
+-const char kBraveMetricsEnabled[] = "brave.metrics.enabled";
+-const char kBraveTelemetryEnabled[] = "brave.telemetry.enabled";
+-const char kBraveReportingEnabled[] = "brave.reporting.enabled";
++
++// Todas as prefs Brave-specific removidas
