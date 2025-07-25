@@ -23,7 +23,7 @@ jobs:
 
     - name: Apply patch (opcional)
       run: |
-        git apply patches/brave-lite.patch
+        git apply patches/brave-lite-full-final.patch
 
     - name: Configure build
       run: |
