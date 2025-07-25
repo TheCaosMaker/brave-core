@@ -1,6 +1,7 @@
 name: Brave Lite Build (Windows)
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
